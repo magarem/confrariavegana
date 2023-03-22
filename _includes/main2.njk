@@ -1,0 +1,12 @@
+<main>
+     <div class="container">
+        <div class="row" style="width: 80%; padding: 40px 0 40px 0; margin: auto">
+          {% for item in content.submenu %}
+            {# <li class="nav-item"> #}
+                <a  href="{{ item[0] }}">{{ item[1] }}</a> 
+            {# </li> #}
+          {% endfor %}
+          {{ content.body | safe }}
+        </div>
+    </div>
+</main>

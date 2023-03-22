@@ -1,0 +1,51 @@
+<main>
+    {% if header %}
+    <header class="site-header site-about-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-12 mx-auto">
+                    <h1 class="text-white">{{title}}</h1>
+                    <strong class="text-white">{{subtitle}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </header>
+    {% endif %}
+    {% if not aside %}
+        {% if margin_type == 'free' %}
+            <div>
+                {{ content | safe }}
+            </div>
+        {% endif %}
+        {% if margin_type !== 'free' %}
+            <div style="width: 70%; padding: 40px 0 40px 0; margin: auto">
+                {{ content | safe }}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% if aside %}
+    <div class="container">
+        <div class="row" style="width: 80%; padding: 40px 0 40px 0; margin: auto">
+            <div class="col-md-3" style="padding-top:2px">
+            {% for item in links %}
+                + <a href='/{{item.split('|')[1]}}'>{{ item.split('|')[0] }}</a><br/>
+            {% endfor %}
+            <br/>
+            {% if side_images %}
+                {% for item in side_images %}
+                    <img src='{{ item }}' width=190/><br/><br/>
+                {% endfor %}
+            {% endif %}
+            </div>
+            <div class="col-md-9">
+                {{ content | safe }}
+            </div>
+        </div>
+    </div>
+        {# <div style="width: 70%; padding: 40px 0 40px 0; margin: auto">
+            teste
+        </div> #}
+    {% endif %}
+</main>
