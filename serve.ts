@@ -1,4 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak@v10.2.0/mod.ts";
+import { exec } from 'https://deno.land/x/exec/mod.ts';
 
 const app = new Application();
 
@@ -26,12 +27,21 @@ router.get("/", (ctx) => {
   ctx.response.redirect("/page/home");
 });
 
+router.get("/go", async (ctx) => {
+  await Deno.writeTextFile(
+    "./page/hello10.md",
+    "--- title: testand10 --- ### Hello World!",
+  );
+  console.log("File written to ./page/hello10.md");
+  console.log(await exec('deno task build'));
+});
+
 // After creating the router, we can add it to the app.
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-await app.listen({ port: 8000 });
 
+await app.listen({ port: 8000 });
 
 // import Server from "lume/core/server.ts";
 
