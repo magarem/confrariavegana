@@ -22,6 +22,10 @@ router.get("/api/time", (ctx) => {
   ctx.response.body = { time: new Date().toISOString() };
 });
 
+router.get("/", (ctx) => {
+  ctx.response.redirect("/page/home");
+});
+
 // After creating the router, we can add it to the app.
 app.use(router.routes());
 app.use(router.allowedMethods());
